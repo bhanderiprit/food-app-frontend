@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 
 import "../../../css/Feed.css";
-import BottamNavbar from "../components/bottamNavbar";
+import BottamNavbar from "../components/BottamNavbar";
 
 const Feed = () => {
   const [videos, setVideos] = useState([]);
