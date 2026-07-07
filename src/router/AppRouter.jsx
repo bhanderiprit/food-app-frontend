@@ -1,0 +1,39 @@
+import React from 'react'
+
+import {BrowserRouter,Route,Routes} from 'react-router-dom'
+import UserRegister from '../features/auth/pages/UserRegister'
+import UserLogin from '../features/auth/pages/UserLogin'
+import FoodPartnerRegister from '../features/auth/pages/FoodPartnerRegister'
+import FoodPartnerLogin from '../features/auth/pages/FoodPartnerLogin'
+import FoodCreate from '../features/auth/pages/FoodCreate'
+import VerifyEmail from '../features/auth/pages/VerifyEmail'
+import Feed from '../features/auth/pages/Feed'
+import Profile from '../features/auth/pages/Profile'
+import Save from '../features/auth/pages/Save'
+import ProtectedRoute from './ProtectedRoute'
+import ProtectedFoodPartnerRoute from './ProtectedFoodPartnerRoute'
+
+const AppRouter = () => {
+  return (
+    <div>
+        <BrowserRouter>
+            <Routes>
+                <Route path='/user/register' element={<UserRegister/>}/>
+                <Route path='/user/login' element={<UserLogin/>}/>
+                <Route path='/user/verifyEmail' element={<VerifyEmail />}/>
+                <Route path='/feed' element = {<ProtectedRoute><Feed/></ProtectedRoute>}/>
+                <Route path='/save' element = {<Save/>}/>
+                <Route path='/food-partner/register' element={<FoodPartnerRegister/>}/>
+                <Route path='/food-partner/login' element={<FoodPartnerLogin/>}/>
+                <Route path='/food-partner/create-food' element={<ProtectedFoodPartnerRoute><FoodCreate/></ProtectedFoodPartnerRoute>}/>
+                <Route path='/profile/:id' element={<Profile/>}/>
+                
+                
+            </Routes>
+            
+        </BrowserRouter>
+    </div>
+  )
+}
+
+export default AppRouter

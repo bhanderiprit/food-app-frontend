@@ -1,0 +1,268 @@
+.feed-container {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.feed-container::-webkit-scrollbar {
+  display: none;
+}
+
+.feed-card {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+}
+
+.feed-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feed-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.6)
+  );
+
+  color: white;
+}
+
+.creator-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.profile-image {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.creator-details h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.view-profile-btn {
+  margin-top: 5px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.video-details h2 {
+  margin-bottom: 5px;
+}
+
+.video-details p {
+  margin: 0;
+  color: #f1f1f1;
+}
+
+.video-actions {
+  position: absolute;
+  right: 15px;
+  bottom: 130px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.action-btn svg {
+  font-size: 34px;
+}
+
+.action-btn span {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.action-btn:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .feed-container {
+    max-width: 100%;
+  }
+
+  .video-actions {
+    right: 10px;
+    bottom: 120px;
+  }
+
+  .action-btn svg {
+    font-size: 30px;
+  }
+
+  .profile-image {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.bottom-navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background: #fff;
+  border-top: 1px solid #ddd;
+
+  padding: 12px 0;
+  z-index: 1000;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+.nav-btn span {
+  font-size: 12px;
+}
+
+.feed-container {
+  padding-bottom: 80px;
+}
+
+.comment-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  z-index: 1000;
+}
+
+.comment-box {
+  width: 100%;
+  max-width: 500px;
+  height: 60vh;
+
+  background: white;
+  border-radius: 20px 20px 0 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.comments-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.comment-item {
+  margin-bottom: 15px;
+}
+
+.comment-item p {
+  margin-top: 5px;
+}
+
+.comment-input-box {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.comment-input-box input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.comment-input-box button {
+  padding: 10px 20px;
+  border: none;
+  background: black;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.comment-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  z-index: 9999;
+}
+
+.comment-box {
+  width: 100%;
+  max-width: 500px;
+  height: 70vh;
+  background: white;
+  border-radius: 20px 20px 0 0;
+
+  display: flex;
+  flex-direction: column;
+}
