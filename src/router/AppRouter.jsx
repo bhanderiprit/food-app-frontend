@@ -1,6 +1,11 @@
 import React from 'react'
 
-import {BrowserRouter,Route,Routes} from 'react-router-dom'
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import UserRegister from '../features/auth/pages/UserRegister'
 import UserLogin from '../features/auth/pages/UserLogin'
 import FoodPartnerRegister from '../features/auth/pages/FoodPartnerRegister'
@@ -18,6 +23,8 @@ const AppRouter = () => {
     <div>
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<Navigate to="/user/login" replace />} />
+
                 <Route path='/user/register' element={<UserRegister/>}/>
                 <Route path='/user/login' element={<UserLogin/>}/>
                 <Route path='/user/verifyEmail' element={<VerifyEmail />}/>
