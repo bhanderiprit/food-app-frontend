@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../../../css/profile.css";
-import BottamNavbar from "../components/bottamNavbar";
+import BottamNavbar from "../components/BottamNavbar";
 
 const Profile = () => {
   const { id } = useParams();
