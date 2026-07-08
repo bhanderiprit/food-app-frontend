@@ -10,7 +10,7 @@ const ProtectedFoodPartnerRoute = ({ children }) => {
     async function verifyUser() {
       try {
         await axios.get(
-          "http://localhost:3000/api/auth/foodPartner/getFoodPartner",
+          `${import.meta.env.VITE_API_URL}/api/auth/foodPartner/getFoodPartner`,
           {
             withCredentials: true,
           }

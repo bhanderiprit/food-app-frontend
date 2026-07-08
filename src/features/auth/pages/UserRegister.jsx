@@ -84,7 +84,7 @@ const UserRegister = () => {
 
           <p>
             Food Partner?{' '}
-            <Link to="/foodpartner/register">Register</Link>
+            <Link to="/food-partner/register">Register</Link>
           </p>
 
           <p>
