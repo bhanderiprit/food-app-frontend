@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../../../css/profile.css";
 import BottamNavbar from "../components/BottamNavbar";
+import defaultProfilepic from '../../../assets/default-profile-pic.webp'
 
 const Profile = () => {
   const { id } = useParams();
@@ -38,7 +39,7 @@ const Profile = () => {
         <img
           src={
             partner.profilePic ||
-            "https://via.placeholder.com/150"
+            defaultProfilepic
           }
           alt="profile"
           className="profile-pic"

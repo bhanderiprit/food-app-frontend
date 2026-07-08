@@ -1,21 +1,35 @@
+/* ===========================
+   FEED CONTAINER
+=========================== */
+
 .feed-container {
   width: 100%;
   max-width: 500px;
-  margin: auto;
   height: 100vh;
-  overflow-y: scroll;
+  margin: auto;
+
+  overflow-y: auto;
   scroll-snap-type: y mandatory;
+  background: #000;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .feed-container::-webkit-scrollbar {
   display: none;
 }
 
+/* ===========================
+   VIDEO CARD
+=========================== */
+
 .feed-card {
   position: relative;
-  height: 100vh;
   width: 100%;
+  height: 100vh;
   scroll-snap-align: start;
+  overflow: hidden;
 }
 
 .feed-video {
@@ -24,22 +38,34 @@
   object-fit: cover;
 }
 
+/* ===========================
+   OVERLAY
+=========================== */
+
 .feed-overlay {
   position: absolute;
   inset: 0;
-  padding: 20px;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 
+  padding: 20px;
+  padding-bottom: 82px;
+
   background: linear-gradient(
-    transparent,
-    rgba(0, 0, 0, 0.6)
+    to top,
+    rgba(0,0,0,.75),
+    rgba(0,0,0,.25),
+    transparent 45%
   );
 
   color: white;
 }
+
+/* ===========================
+   CREATOR
+=========================== */
 
 .creator-info {
   display: flex;
@@ -54,40 +80,68 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid white;
+  background: white;
 }
 
 .creator-details h3 {
   margin: 0;
   font-size: 18px;
+  font-weight: 700;
 }
 
 .view-profile-btn {
-  margin-top: 5px;
-  padding: 6px 12px;
+  margin-top: 6px;
+
+  background: white;
+  color: black;
+
   border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 13px;
+  border-radius: 25px;
+
+  padding: 7px 16px;
+
   font-weight: 600;
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition: .2s;
 }
 
+.view-profile-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ===========================
+   FOOD DETAILS
+=========================== */
+
 .video-details h2 {
-  margin-bottom: 5px;
+  margin: 8px 0 4px;
+  font-size: 22px;
 }
 
 .video-details p {
   margin: 0;
-  color: #f1f1f1;
+  font-size: 15px;
+  color: #f0f0f0;
 }
+
+/* ===========================
+   RIGHT ACTIONS
+=========================== */
 
 .video-actions {
   position: absolute;
+
   right: 15px;
-  bottom: 130px;
+  bottom: 85px;
 
   display: flex;
   flex-direction: column;
   gap: 22px;
+
+  z-index: 20;
 }
 
 .action-btn {
@@ -100,6 +154,12 @@
   align-items: center;
 
   cursor: pointer;
+
+  transition: .2s;
+}
+
+.action-btn:hover {
+  transform: scale(1.08);
 }
 
 .action-btn svg {
@@ -107,91 +167,90 @@
 }
 
 .action-btn span {
-  margin-top: 5px;
+  margin-top: 4px;
   font-size: 14px;
   font-weight: 600;
 }
 
-.action-btn:hover {
-  transform: scale(1.1);
-}
-
-@media (max-width: 768px) {
-  .feed-container {
-    max-width: 100%;
-  }
-
-  .video-actions {
-    right: 10px;
-    bottom: 120px;
-  }
-
-  .action-btn svg {
-    font-size: 30px;
-  }
-
-  .profile-image {
-    width: 50px;
-    height: 50px;
-  }
-}
+/* ===========================
+   BOTTOM NAVBAR
+=========================== */
 
 .bottom-navbar {
   position: fixed;
+
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
   width: 100%;
+  max-width: 500px;
+  height: 70px;
 
   display: flex;
   justify-content: space-around;
   align-items: center;
 
-  background: #fff;
+  background: white;
+
   border-top: 1px solid #ddd;
 
-  padding: 12px 0;
-  z-index: 1000;
+  z-index: 999;
 }
 
 .nav-btn {
-  background: none;
+  background: transparent;
   border: none;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
 
-  font-size: 20px;
   cursor: pointer;
-  color: #333;
+
+  color: #222;
+
+  transition: .2s;
+}
+
+.nav-btn:hover {
+  transform: scale(1.05);
+}
+
+.nav-btn svg {
+  font-size: 22px;
 }
 
 .nav-btn span {
+  margin-top: 3px;
   font-size: 12px;
 }
 
-.feed-container {
-  padding-bottom: 80px;
-}
+/* ===========================
+   COMMENT MODAL
+=========================== */
 
 .comment-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+
+  background: rgba(0,0,0,.5);
 
   display: flex;
-  align-items: flex-end;
   justify-content: center;
+  align-items: flex-end;
 
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .comment-box {
   width: 100%;
   max-width: 500px;
-  height: 60vh;
+
+  height: 70vh;
 
   background: white;
+
   border-radius: 20px 20px 0 0;
 
   display: flex;
@@ -204,6 +263,7 @@
   align-items: center;
 
   padding: 15px;
+
   border-bottom: 1px solid #ddd;
 }
 
@@ -217,52 +277,83 @@
   margin-bottom: 15px;
 }
 
-.comment-item p {
-  margin-top: 5px;
+.comment-item strong {
+  display: block;
+  margin-bottom: 4px;
 }
 
 .comment-input-box {
   display: flex;
   gap: 10px;
+
   padding: 15px;
+
   border-top: 1px solid #ddd;
 }
 
 .comment-input-box input {
   flex: 1;
-  padding: 10px;
+
+  padding: 10px 14px;
+
   border: 1px solid #ddd;
   border-radius: 8px;
+
+  outline: none;
 }
 
 .comment-input-box button {
-  padding: 10px 20px;
   border: none;
+  border-radius: 8px;
+
   background: black;
   color: white;
-  border-radius: 8px;
+
+  padding: 10px 18px;
+
   cursor: pointer;
 }
 
-.comment-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
+/* ===========================
+   MOBILE
+=========================== */
 
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
+@media (max-width:768px) {
 
-  z-index: 9999;
-}
+  .feed-container {
+    max-width: 100%;
+  }
 
-.comment-box {
-  width: 100%;
-  max-width: 500px;
-  height: 70vh;
-  background: white;
-  border-radius: 20px 20px 0 0;
+  .feed-overlay {
+    padding: 18px;
+    padding-bottom: 80px;
+  }
 
-  display: flex;
-  flex-direction: column;
+  .video-actions {
+    right: 12px;
+    bottom: 82px;
+    gap: 18px;
+  }
+
+  .action-btn svg {
+    font-size: 30px;
+  }
+
+  .profile-image {
+    width: 48px;
+    height: 48px;
+  }
+
+  .creator-details h3 {
+    font-size: 17px;
+  }
+
+  .video-details h2 {
+    font-size: 20px;
+  }
+
+  .bottom-navbar {
+    height: 70px;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
