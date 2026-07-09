@@ -33,7 +33,7 @@ const AppRouter = () => {
                 <Route path='/save' element = {<ProtectedRoute><Save/></ProtectedRoute>}/>
                 <Route path='/food-partner/register' element={<FoodPartnerRegister/>}/>
                 <Route path='/food-partner/login' element={<FoodPartnerLogin/>}/>
-                <Route path='/food-partner/create-food' element={<ProtectedRoute><FoodCreate/></ProtectedRoute>}/>
+                <Route path='/food-partner/create-food' element={<ProtectedFoodPartnerRoute><FoodCreate/></ProtectedFoodPartnerRoute>}/>
                 <Route path='/profile/:id' element={<ProtectedFoodPartnerRoute><Profile/></ProtectedFoodPartnerRoute>}/>
                 <Route path='/food-partner-profile/:id' element={<ProtectedFoodPartnerRoute><FoodPartnerProfile/></ProtectedFoodPartnerRoute>}/>
 

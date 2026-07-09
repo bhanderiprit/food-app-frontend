@@ -110,6 +110,18 @@ export  const useAuth =  () => {
         
     }
 
+    const handelFoodPartnerLogout = async () => {
+        setLoading(true)
+        try {
+            const data = await FoodPartnerLogout()
+            return data
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
     return {foodPartner,
         loading,
         handleFoodPartnerRegister,
@@ -118,6 +130,7 @@ export  const useAuth =  () => {
         handelVerifyEmail,
         handelUserLogin ,
         handelUserLogout,
-        handelUserLogoutAll}
+        handelUserLogoutAll,
+        handelFoodPartnerLogout}
 }
 

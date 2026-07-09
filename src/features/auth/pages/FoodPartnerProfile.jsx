@@ -4,6 +4,7 @@ import axios from "axios";
 import "../../../css/profile.css";
 import BottamNavbar from "../components/BottamNavbar";
 import defaultProfilepic from '../../../assets/default-profile-pic.webp'
+import LogoutButton from "../components/FoodPartnerLogout";
 
 const FoodPartnerProfile = () => {
   const { id } = useParams();
@@ -82,6 +83,7 @@ const FoodPartnerProfile = () => {
   >
     + Add Food
   </button>
+  <LogoutButton />
 </div>
 
             
@@ -141,7 +143,6 @@ const FoodPartnerProfile = () => {
   </div>
 )}
 
-    <BottamNavbar />
   </>
 );
 };

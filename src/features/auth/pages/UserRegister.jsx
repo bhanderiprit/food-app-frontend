@@ -89,7 +89,7 @@ const UserRegister = () => {
 
           <p>
             Already a Food Partner?{' '}
-            <Link to="/foodpartner/login">Login</Link>
+            <Link to="/food-partner/login">Login</Link>
           </p>
         </div>
       </div>

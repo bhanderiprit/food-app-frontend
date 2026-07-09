@@ -22,13 +22,22 @@ export async function UserRegister({username, email, password}) {
   }
 }
 export async function UserLogout() {
-  const response = await api.get('/user/logout')
+  try {
+    const response = await api.get('/user/logout')
   return response
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export async function UserLogoutAll(){
-  const response = await api.get('/user/logoutAll')
+  try {
+    const response = await api.get('/user/logoutAll')
   return response
+}
+   catch (error) {
+    console.log(error)
+  }
 }
 
 export async function UserLogin({email, password}) {
@@ -81,5 +90,13 @@ export async function foodpartnerRegister({name, email, password}) {
   } catch (error) {
     console.log(error)
   }
+}
+
+export async function foodPartnerLogout() {
+try {
+  const response = await api.get('/foodPartner/logout')
+  return response
+} catch (error) {
+  console.log(error)}
 }
 
