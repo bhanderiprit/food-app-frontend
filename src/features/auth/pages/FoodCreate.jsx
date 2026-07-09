@@ -50,7 +50,7 @@ const FoodCreate = () => {
 
       const foodPartnerId = response.data.Food.foodPartner;
 
-      navigate(`/profile/${foodPartnerId}`);
+      navigate(`/food-partner-profile/${foodPartnerId}`);
     } catch (error) {
       console.log(error.response?.data || error);
       alert("Upload Failed");
