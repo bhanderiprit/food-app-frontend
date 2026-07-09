@@ -16,7 +16,7 @@ const UserLogin = () => {
 
     try {
       await handelUserLogin({ email, password });
-      navigate('/feed');
+      navigate('/');
     } catch (error) {
       console.log(error);
       alert(error?.response?.data?.message || 'Login failed');

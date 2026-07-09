@@ -23,17 +23,17 @@ const AppRouter = () => {
     <div>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Navigate to="/user/login" replace />} />
+                {/* <Route path="/" element={<Navigate to="/user/login" replace />} /> */}
 
                 <Route path='/user/register' element={<UserRegister/>}/>
                 <Route path='/user/login' element={<UserLogin/>}/>
                 <Route path='/user/verifyEmail' element={<VerifyEmail />}/>
-                <Route path='/feed' element = {<ProtectedRoute><Feed/></ProtectedRoute>}/>
-                <Route path='/save' element = {<Save/>}/>
+                <Route path='/' element = {<ProtectedRoute><Feed/></ProtectedRoute>}/>
+                <Route path='/save' element = {<ProtectedRoute><Save/></ProtectedRoute>}/>
                 <Route path='/food-partner/register' element={<FoodPartnerRegister/>}/>
                 <Route path='/food-partner/login' element={<FoodPartnerLogin/>}/>
                 <Route path='/food-partner/create-food' element={<ProtectedFoodPartnerRoute><FoodCreate/></ProtectedFoodPartnerRoute>}/>
-                <Route path='/profile/:id' element={<Profile/>}/>
+                <Route path='/profile/:id' element={<ProtectedFoodPartnerRoute><Profile/></ProtectedFoodPartnerRoute>}/>
                 
                 
             </Routes>

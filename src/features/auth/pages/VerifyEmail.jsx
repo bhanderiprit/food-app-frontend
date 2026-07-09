@@ -18,7 +18,8 @@ const VerifyEmail = () => {
       });
 
       const data = await handelVerifyEmail({email,otp})
-      navigate('/feed')
+      
+      navigate('/')
 
 
     } catch (error) {

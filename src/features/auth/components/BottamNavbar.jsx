@@ -10,7 +10,7 @@ const BottamNavbar = () => {
     <div className="bottom-navbar">
   <button
     className="nav-btn"
-    onClick={() => navigate("/feed")}
+    onClick={() => navigate("/")}
   >
     <FaHome />
     <span>Home</span>
