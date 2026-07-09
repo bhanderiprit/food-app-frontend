@@ -21,6 +21,15 @@ export async function UserRegister({username, email, password}) {
     
   }
 }
+export async function UserLogout() {
+  const response = await api.get('/user/logout')
+  return response
+}
+
+export async function UserLogoutAll(){
+  const response = await api.get('/user/logoutAll')
+  return response
+}
 
 export async function UserLogin({email, password}) {
   try {

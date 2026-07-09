@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { Context } from "../context/AuthContext"
-import { foodpartnerLogin, foodpartnerRegister, UserRegister, VerifyEmail,UserLogin } from "../services/auth.api"
+import { foodpartnerLogin, foodpartnerRegister, UserRegister, VerifyEmail,UserLogin, UserLogout, UserLogoutAll } from "../services/auth.api"
 
 
 
@@ -70,6 +70,30 @@ export  const useAuth =  () => {
         }
     }
 
+    const handelUserLogout = async () => {
+        setLoading(true)
+        try {
+            await UserLogout()
+        } catch (error) {
+            console.log(error);
+            throw error
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const handelUserLogoutAll = async () => {
+        setLoading(true)
+        try {
+            await UserLogoutAll()
+        } catch (error) {
+            console.log(error);
+            throw error
+        } finally {
+            setLoading(false)
+        }
+    }
+
     const handelVerifyEmail = async ({email, otp}) => {
 
         setLoading(true)
@@ -86,6 +110,14 @@ export  const useAuth =  () => {
         
     }
 
-    return {foodPartner,loading,handleFoodPartnerRegister,handelFoodPartnerLogin,user,handelUserRegister , handelVerifyEmail,handelUserLogin}
+    return {foodPartner,
+        loading,
+        handleFoodPartnerRegister,
+        handelFoodPartnerLogin,
+        user,handelUserRegister ,
+        handelVerifyEmail,
+        handelUserLogin ,
+        handelUserLogout,
+        handelUserLogoutAll}
 }
 

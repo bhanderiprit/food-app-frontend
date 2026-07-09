@@ -10,9 +10,7 @@ const UserLogin = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(import.meta.env.VITE_API_URL);
-    
+    e.preventDefault();    
 
     try {
       await handelUserLogin({ email, password });

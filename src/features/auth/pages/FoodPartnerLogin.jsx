@@ -18,9 +18,10 @@ const FoodPartnerLogin = () => {
         email,
         password,
       });
+      const FoodPartnerId = data.data.foodPartner.id
 
       console.log(data);
-      navigate('/food-partner/create-food');
+      navigate(`/food-partner-profile/${FoodPartnerId}`);
     } catch (error) {
       console.log(error, 'failed to login');
 
