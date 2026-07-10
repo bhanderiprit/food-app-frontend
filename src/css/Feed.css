@@ -487,3 +487,30 @@
   outline: none;
   box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.3);
 }
+
+
+/* eya */
+
+.password-eye {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
+  font-size: 18px;
+  transition: color 0.2s;
+}
+
+.password-eye:hover {
+  color: #fff;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group input {
+  width: 100%;
+  padding-right: 45px;
+}

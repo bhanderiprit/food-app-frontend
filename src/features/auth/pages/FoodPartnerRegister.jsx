@@ -2,17 +2,27 @@ import React, { useState } from 'react';
 import '../../../css/auth.css';
 import { useAuth } from '../Hooks/useAuth';
 import { useNavigate, Link } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const FoodPartnerRegister = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState(false);
 
   const { handleFoodPartnerRegister, loading } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      return alert('Passwords do not match');
+    }
 
     try {
       await handleFoodPartnerRegister({
@@ -64,23 +74,91 @@ const FoodPartnerRegister = () => {
             />
           </div>
 
-          <div className="form-group">
+          {/* Password */}
+          <div
+            className="form-group"
+            style={{ position: 'relative' }}
+          >
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="new-password"
               required
             />
+
+            <span
+              className="password-eye"
+              onClick={() =>
+                setShowPassword(!showPassword)
+              }
+            >
+              {showPassword ? (
+                <FaEyeSlash />
+              ) : (
+                <FaEye />
+              )}
+            </span>
           </div>
+
+          {/* Confirm Password */}
+          <div
+            className="form-group"
+            style={{ position: 'relative' }}
+          >
+            <input
+              type={
+                showConfirmPassword
+                  ? 'text'
+                  : 'password'
+              }
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) =>
+                setConfirmPassword(e.target.value)
+              }
+              autoComplete="new-password"
+              required
+            />
+
+            <span
+              className="password-eye"
+              onClick={() =>
+                setShowConfirmPassword(
+                  !showConfirmPassword
+                )
+              }
+            >
+              {showConfirmPassword ? (
+                <FaEyeSlash />
+              ) : (
+                <FaEye />
+              )}
+            </span>
+          </div>
+
+          {confirmPassword &&
+            password !== confirmPassword && (
+              <p
+                style={{
+                  color: 'red',
+                  fontSize: '14px',
+                  marginBottom: '12px',
+                }}
+              >
+                Passwords do not match
+              </p>
+            )}
 
           <button
             type="submit"
             className="btn"
             disabled={loading}
           >
-            {loading ? 'Registering...' : 'Register'}
+            {loading
+              ? 'Registering...'
+              : 'Register'}
           </button>
         </form>
 

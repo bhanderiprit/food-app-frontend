@@ -13,7 +13,7 @@ export async function UserRegister({username, email, password}) {
     password
   })
 
-  return response
+  return response.data
 
   } catch (error) {
     console.log(error);
@@ -40,26 +40,27 @@ export async function UserLogoutAll(){
   }
 }
 
-export async function UserLogin({email, password}) {
+export async function UserLogin({ email, password }) {
   try {
-    const response = await api.post('/user/login',{
+    const response = await api.post("/user/login", {
       email,
-      password
-    })
-    return response
+      password,
+    });
+
+    return response.data;
   } catch (error) {
-    console.log(error)
+    console.log(error.response?.data);
+    throw error;
   }
 }
 
-export async function VerifyEmail ({email, otp}) {
+export async function VerifyEmail ({otp,id}) {
   try {
-    const response = await api.post('/user/verifyEmail',{
-      email,
+    const response = await api.post(`/user/verifyEmail/${id}`,{
       otp
     })
 
-    return response
+    return response.data
   } catch (error) {
     console.log(error);
     throw error
@@ -73,9 +74,10 @@ export async function foodpartnerLogin({email, password}) {
       email,
       password
     })
-    return response
+    return response.data
   } catch (error) {
-    console.log(error)
+    console.log(error.response?.data);
+    throw error
   }
 }
 

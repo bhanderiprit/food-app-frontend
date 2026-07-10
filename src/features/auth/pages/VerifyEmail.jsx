@@ -1,27 +1,23 @@
 import React, { useState } from 'react';
 import '../../../css/auth.css';
 import { useAuth } from '../Hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const VerifyEmail = () => {
-  const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
-  const {loading,handelVerifyEmail} = useAuth()
-  const navigate = useNavigate() 
+  const [showOtp, setShowOtp] = useState(false);
+
+  const { loading, handelVerifyEmail } = useAuth();
+  const navigate = useNavigate();
+  const { id } = useParams();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      console.log({
-        email,
-        otp,
-      });
-
-      const data = await handelVerifyEmail({email,otp})
-      
-      navigate('/')
-
-
+      await handelVerifyEmail({ otp, id });
+      navigate('/');
     } catch (error) {
       console.log(error);
       alert(
@@ -30,8 +26,8 @@ const VerifyEmail = () => {
     }
   };
 
-  if(loading){
-    return <h1>loading....</h1>
+  if (loading) {
+    return <h1>Loading...</h1>;
   }
 
   return (
@@ -40,26 +36,33 @@ const VerifyEmail = () => {
         <h2>Verify Email</h2>
 
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
+          <div
+            className="form-group"
+            style={{ position: 'relative' }}
+          >
             <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <input
-              type="text"
+              type={showOtp ? 'text' : 'password'}
               placeholder="Enter OTP"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
               maxLength={6}
               required
             />
+
+            <span
+              onClick={() => setShowOtp(!showOtp)}
+              style={{
+                position: 'absolute',
+                right: '15px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                cursor: 'pointer',
+                color: '#888',
+                fontSize: '18px'
+              }}
+            >
+              {showOtp ? <FaEyeSlash /> : <FaEye />}
+            </span>
           </div>
 
           <button type="submit" className="btn">

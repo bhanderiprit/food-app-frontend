@@ -28,7 +28,7 @@ const AppRouter = () => {
 
                 <Route path='/user/register' element={<UserRegister/>}/>
                 <Route path='/user/login' element={<UserLogin/>}/>
-                <Route path='/user/verifyEmail' element={<VerifyEmail />}/>
+                <Route path='/user/verifyEmail/:id' element={<VerifyEmail />}/>
                 <Route path='/' element = {<ProtectedRoute><Feed/></ProtectedRoute>}/>
                 <Route path='/save' element = {<ProtectedRoute><Save/></ProtectedRoute>}/>
                 <Route path='/food-partner/register' element={<FoodPartnerRegister/>}/>

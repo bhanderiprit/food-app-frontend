@@ -8,7 +8,7 @@ const BottamNavbar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef();
-  const{loading, handelUserLogout, handelUserLogoutAll} = useAuth()
+  const{loading, handelUserLogout} = useAuth()
 
   useEffect(() => {
     const closeMenu = (e) => {
@@ -32,16 +32,16 @@ const BottamNavbar = () => {
     }
   };
 
-  const logoutAll = async() => {
-    try {
-      await handelUserLogoutAll()
-      alert('logout from all device')
-    navigate("user/login");
-    } catch (error) {
-      alert('logout failed')
+  // const logoutAll = async() => {
+  //   try {
+  //     await handelUserLogoutAll()
+  //     alert('logout from all device')
+  //   navigate("user/login");
+  //   } catch (error) {
+  //     alert('logout failed')
       
-    }
-  };
+  //   }
+  // };
 
   return (
     <>
@@ -74,9 +74,9 @@ const BottamNavbar = () => {
           {showMenu && (
             <div className="popup-menu">
               <button onClick={logout}>Logout</button>
-              <button className="danger" onClick={logoutAll}>
+              {/* <button className="danger" onClick={logoutAll}>
                 Logout All Devices
-              </button>
+              </button> */}
             </div>
           )}
         </div>

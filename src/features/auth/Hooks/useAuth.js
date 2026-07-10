@@ -31,11 +31,10 @@ export  const useAuth =  () => {
 
         try {
             const response = await foodpartnerLogin({email,password})
-            setFoodPartner(response.foodPartner)
+            setFoodPartner(response.foodPartner.name)
             return response
 
         } catch (error) {
-            console.log(error);
             throw error;
         } finally{
             setLoading(false)
@@ -56,19 +55,24 @@ export  const useAuth =  () => {
         }
     }
 
-    const handelUserLogin = async ({email,password}) => {
-        setLoading(true)
-        try {
-            const response = await UserLogin({email,password})
-            setUser(response.user)
-            return response
-        } catch (error) {
-            console.log(error);
-            throw error
-        } finally {
-            setLoading(false)
-        }
-    }
+    const handelUserLogin = async ({ email, password }) => {
+  setLoading(true);
+
+  try {
+    const response = await UserLogin({ email, password });
+
+    console.log(response);
+
+    setUser(response.user);
+
+
+    return response;
+  } catch (error) {
+    throw error;
+  } finally {
+    setLoading(false);
+  }
+};
 
     const handelUserLogout = async () => {
         setLoading(true)
@@ -94,14 +98,15 @@ export  const useAuth =  () => {
         }
     }
 
-    const handelVerifyEmail = async ({email, otp}) => {
+    const handelVerifyEmail = async ({otp,id}) => {
 
         setLoading(true)
         try {
-             const data = await VerifyEmail({email, otp})
+             const data = await VerifyEmail({otp,id})
+             setUser(data.updetedUser)
              return data 
         } catch (error) {
-            console.log(error);
+            console.log(error.response?.data);
             throw error
             
         } finally {
@@ -116,7 +121,8 @@ export  const useAuth =  () => {
             const data = await FoodPartnerLogout()
             return data
         } catch (error) {
-            console.log(error)
+            console.log(error.response?.data);
+            throw error
         } finally {
             setLoading(false)
         }

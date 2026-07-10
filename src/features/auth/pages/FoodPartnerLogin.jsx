@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import '../../../css/auth.css';
 import { useAuth } from '../Hooks/useAuth';
 import { useNavigate, Link } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const FoodPartnerLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
+  const navigate = useNavigate();
   const { loading, handelFoodPartnerLogin } = useAuth();
 
-  async function handelSubmit(e) {
+  const handelSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -18,18 +20,18 @@ const FoodPartnerLogin = () => {
         email,
         password,
       });
-      const FoodPartnerId = data.data.foodPartner.id
 
-      console.log(data);
-      navigate(`/food-partner-profile/${FoodPartnerId}`);
+      const foodPartnerId = data.foodPartner.id;
+
+      navigate(`/food-partner-profile/${foodPartnerId}`);
     } catch (error) {
-      console.log(error, 'failed to login');
+      console.log(error);
 
       alert(
         error?.response?.data?.message || 'Login Failed'
       );
     }
-  }
+  };
 
   if (loading) {
     return <h1>Loading...</h1>;
@@ -47,22 +49,44 @@ const FoodPartnerLogin = () => {
               placeholder="Business Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
               required
             />
           </div>
 
-          <div className="form-group">
+          <div
+            className="form-group"
+            style={{ position: 'relative' }}
+          >
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
               required
             />
+
+            <span
+              className="password-eye"
+              onClick={() =>
+                setShowPassword(!showPassword)
+              }
+            >
+              {showPassword ? (
+                <FaEyeSlash />
+              ) : (
+                <FaEye />
+              )}
+            </span>
           </div>
 
-          <button className="btn" type="submit">
-            Login
+          <button
+            className="btn"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
