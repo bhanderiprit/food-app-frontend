@@ -14,11 +14,16 @@ import {
 
 import "../../../css/Feed.css";
 import BottamNavbar from "../components/BottamNavbar";
+import ReelSkeleton from "../components/ReelSkeleton";
 
 const Feed = () => {
   const [videos, setVideos] = useState([]);
   const videoRefs = useRef([]);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [videoLoading, setVideoLoading] = useState(true);
+
+
 
 
   const [showComments, setShowComments] = useState(false);
@@ -81,6 +86,8 @@ const Feed = () => {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
+        setLoading(true);
+
         const res = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/food/getAllFood`,
           {
@@ -91,6 +98,8 @@ const Feed = () => {
         setVideos(res.data.foods);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -183,10 +192,29 @@ const Feed = () => {
       console.error(error);
     }
   }
+  if (loading) {
+    return (
+      <>
+        <div className="feed-container">
+          <ReelSkeleton />
+        </div>
+
+        <BottamNavbar />
+      </>
+    );
+  }
 
   return (
     <>
       <div className="feed-container">
+
+        {videoLoading && (
+    <div className="video-loader">
+      <ReelSkeleton />
+    </div>
+  )}
+
+
         {videos.map((item, index) => (
           <div className="feed-card" key={item._id}>
             <video
@@ -196,6 +224,11 @@ const Feed = () => {
               loop
               playsInline
               className="feed-video"
+              onCanPlay={() => {
+                if (index === 0) {
+                  setVideoLoading(false);
+                }
+              }}
             />
 
             <div className="feed-overlay">
@@ -252,58 +285,58 @@ const Feed = () => {
         ))}
       </div>
       {
-  showComments && (
-    <div className="comment-modal">
-      <div className="comment-box">
+        showComments && (
+          <div className="comment-modal">
+            <div className="comment-box">
 
-        <div className="comment-header">
-          <h3>Comments</h3>
+              <div className="comment-header">
+                <h3>Comments</h3>
 
-          <button
-            onClick={() => setShowComments(false)}
-          >
-            ✕
-          </button>
-        </div>
-
-        <div className="comments-list">
-          {comments.length > 0 ? (
-            comments.map((comment) => (
-              <div
-                key={comment._id}
-                className="comment-item"
-              >
-                <strong>
-                  {comment.user?.username}
-                </strong>
-
-                <p>{comment.comment}</p>
+                <button
+                  onClick={() => setShowComments(false)}
+                >
+                  ✕
+                </button>
               </div>
-            ))
-          ) : (
-            <p>No comments yet</p>
-          )}
-        </div>
 
-        <div className="comment-input-box">
-          <input
-            type="text"
-            placeholder="Add comment..."
-            value={commentText}
-            onChange={(e) =>
-              setCommentText(e.target.value)
-            }
-          />
+              <div className="comments-list">
+                {comments.length > 0 ? (
+                  comments.map((comment) => (
+                    <div
+                      key={comment._id}
+                      className="comment-item"
+                    >
+                      <strong>
+                        {comment.user?.username}
+                      </strong>
 
-          <button onClick={handleCommentSubmit}>
-            Post
-          </button>
-        </div>
+                      <p>{comment.comment}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>No comments yet</p>
+                )}
+              </div>
 
-      </div>
-    </div>
-  )
-}
+              <div className="comment-input-box">
+                <input
+                  type="text"
+                  placeholder="Add comment..."
+                  value={commentText}
+                  onChange={(e) =>
+                    setCommentText(e.target.value)
+                  }
+                />
+
+                <button onClick={handleCommentSubmit}>
+                  Post
+                </button>
+              </div>
+
+            </div>
+          </div>
+        )
+      }
       <BottamNavbar />
     </>
 

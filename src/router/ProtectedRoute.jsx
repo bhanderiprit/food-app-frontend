@@ -1,6 +1,8 @@
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ReelSkeleton from "../features/auth/components/ReelSkeleton";
+import BottamNavbar from "../features/auth/components/BottamNavbar";
 
 const ProtectedRoute = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -27,7 +29,16 @@ const ProtectedRoute = ({ children }) => {
     verifyUser();
   }, []);
 
-  if (loading) return <h2>Loading...</h2>;
+  if (loading) {
+    return (
+      <>
+        <div className="feed-container">
+          <ReelSkeleton />
+        </div>
+
+      </>
+    );
+  }
 
   return authenticated ? children : <Navigate to="/user/login" replace />;
 };
