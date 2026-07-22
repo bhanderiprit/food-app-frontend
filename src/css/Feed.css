@@ -322,7 +322,7 @@
   max-width: 500px;
   height: 70vh;
 
-  background: white;
+  background: #131212;
 
   border-radius: 20px 20px 0 0;
 
@@ -336,7 +336,7 @@
   align-items: center;
 
   padding: 15px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #131212;
 }
 
 .comments-list {
@@ -495,4 +495,38 @@
   inset: 0;
   z-index: 100;
   background: #000;
+}
+
+/* Add to your Feed.css */
+
+.loading-more {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.no-more-videos {
+  width: 100%;
+  text-align: center;
+  padding: 30px 0;
+  color: #888;
+  font-size: 14px;
+}
+
+.feed-container {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+
+/* Ensure proper loading states */
+.video-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  z-index: 10;
 }
