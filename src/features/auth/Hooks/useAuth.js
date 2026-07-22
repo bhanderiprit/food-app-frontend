@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { Context } from "../context/AuthContext"
-import { foodpartnerLogin, foodpartnerRegister, UserRegister, VerifyEmail,UserLogin, UserLogout, UserLogoutAll } from "../services/auth.api"
+import { foodpartnerLogin, foodpartnerRegister, UserRegister, VerifyEmail,UserLogin, UserLogout, UserLogoutAll, foodPartnerLogout } from "../services/auth.api"
 
 
 
@@ -118,7 +118,7 @@ export  const useAuth =  () => {
     const handelFoodPartnerLogout = async () => {
         setLoading(true)
         try {
-            const data = await FoodPartnerLogout()
+            const data = await foodPartnerLogout()
             return data
         } catch (error) {
             console.log(error.response?.data);
